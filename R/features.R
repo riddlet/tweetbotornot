@@ -28,6 +28,9 @@ extract_features_ytweets <- function(x) {
   x$text[x$is_retweet] <- NA_character_
   x$retweet_count[x$is_retweet] <- NA_integer_
 
+  # pull out user name for later joining
+  user_id <- x$user_id[1]
+
   ## remove user level duplicates
   x_usr <- dplyr::filter(x, !duplicated(.data$user_id))
 
@@ -56,6 +59,8 @@ extract_features_ytweets <- function(x) {
   dd1 <- cbind(txt_df, b64_df[-1])
   dd2 <- cbind(dsc_df, loc_df[-1])
   dd2 <- cbind(dd2, nm_df[-1])
+  dd1$user_id <- user_id
+  dd2$user_id <- user_id
   dd <- dplyr::left_join(dd1, dd2, by = "user_id")
 
   x <- x %>%
