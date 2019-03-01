@@ -172,32 +172,32 @@ extract_features_ntweets <- function(x) {
   ## tweet features
   txt_df <- tf(
     dplyr::select(x[!is.na(x$text), ], user_id = user_id, text = text))
-  names(txt_df)[-1] <- paste0("txt_", names(txt_df)[-1])
+  names(txt_df) <- paste0("txt_", names(txt_df))
   txt_df[1:ncol(txt_df)] <- apply(txt_df, 2, function(.x)
     ifelse(is.na(.x), 0, .x))
 
   ## base64 version
   b64_df <- tf(
     dplyr::select(x[!is.na(x$text), ], user_id = user_id, text = text))
-  names(b64_df)[-1] <- paste0("b64_", names(b64_df)[-1])
+  names(b64_df) <- paste0("b64_", names(b64_df))
   b64_df[1:ncol(b64_df)] <- apply(b64_df, 2, function(.x)
     ifelse(is.na(.x), 0, .x))
 
   dsc_df <- tf(
     dplyr::select(x, user_id = user_id, text = description))
-  names(dsc_df)[-1] <- paste0("dsc_", names(dsc_df)[-1])
+  names(dsc_df) <- paste0("dsc_", names(dsc_df))
   dsc_df[1:ncol(dsc_df)] <- apply(dsc_df, 2, function(.x)
     ifelse(is.na(.x), 0, .x))
 
   loc_df <- tf(
     dplyr::select(x, user_id = user_id, text = location))
-  names(loc_df)[-1] <- paste0("loc_", names(loc_df)[-1])
+  names(loc_df) <- paste0("loc_", names(loc_df))
   loc_df[1:ncol(loc_df)] <- apply(loc_df, 2, function(.x)
     ifelse(is.na(.x), 0, .x))
 
   nm_df <- tf(
     dplyr::select(x, user_id = user_id, text = name))
-  names(nm_df)[-1] <- paste0("nm_", names(nm_df)[-1])
+  names(nm_df) <- paste0("nm_", names(nm_df))
   nm_df[1:ncol(nm_df)] <- apply(nm_df, 2, function(.x)
     ifelse(is.na(.x), 0, .x))
 
