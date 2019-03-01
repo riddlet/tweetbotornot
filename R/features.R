@@ -37,24 +37,24 @@ extract_features_ytweets <- function(x) {
   ## tweet features
   txt_df <- tf(
     dplyr::select(x[!is.na(x$text), ], user_id = user_id, text = text))
-  names(txt_df)[-1] <- paste0("txt_", names(txt_df)[-1])
-
+  names(txt_df) <- paste0("txt_", names(txt_df))
+  
   ## base64 version
   b64_df <- tf(
     dplyr::select(x[!is.na(x$text), ], user_id = user_id, text = text))
-  names(b64_df)[-1] <- paste0("b64_", names(b64_df)[-1])
-
+  names(b64_df) <- paste0("b64_", names(b64_df))
+  
   dsc_df <- tf(
     dplyr::select(x_usr, user_id = user_id, text = description))
-  names(dsc_df)[-1] <- paste0("dsc_", names(dsc_df)[-1])
-
+  names(dsc_df) <- paste0("dsc_", names(dsc_df))
+  
   loc_df <- tf(
     dplyr::select(x_usr, user_id = user_id, text = location))
-  names(loc_df)[-1] <- paste0("loc_", names(loc_df)[-1])
-
+  names(loc_df) <- paste0("loc_", names(loc_df))
+  
   nm_df <- tf(
     dplyr::select(x_usr, user_id = user_id, text = name))
-  names(nm_df)[-1] <- paste0("nm_", names(nm_df)[-1])
+  names(nm_df) <- paste0("nm_", names(nm_df))
 
   dd1 <- cbind(txt_df, b64_df[-1])
   dd2 <- cbind(dsc_df, loc_df[-1])
